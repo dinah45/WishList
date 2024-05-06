@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -28,6 +29,7 @@ import com.example.wishlist.ui.components.WishTextField
 import com.example.wishlist.ui.data.WishViewModel
 import com.example.wishlist.R
 import com.example.wishlist.ui.data.Wish
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -40,6 +42,15 @@ fun AddScreen(navController: NavController,
    }
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
+    if (id != 0L) {
+        val wish = viewModel.getAllWishesById(id).collectAsState(
+            initial = Wish(0L, "", ""))
+        viewModel.wishTitleState = wish.value.title
+        viewModel.wishDescriptionState = wish.value.description
+        }else {
+    viewModel.wishTitleState = ""
+        viewModel.wishDescriptionState = ""
+    }
 
     Scaffold(
         topBar = {
@@ -50,6 +61,7 @@ fun AddScreen(navController: NavController,
                 navController.navigateUp()
             }
         },
+        scaffoldState = scaffoldState
     ) {
         Column(
             modifier = Modifier
@@ -79,6 +91,13 @@ fun AddScreen(navController: NavController,
                     viewModel.wishDescriptionState.isNotEmpty()) {
                     if (id != 0L) {
 //update a wish
+                        viewModel.updateWish(
+                            Wish(
+                                id = id,
+                                title = viewModel.wishTitleState.trim(),
+                                description = viewModel.wishDescriptionState.trim()
+                            )
+                        )
                     }else {
                     viewModel.addWish(
                         Wish(
@@ -105,6 +124,10 @@ fun AddScreen(navController: NavController,
                     fontSize = 18.sp,
                     color = colorResource(id = R.color.white)
                 )
+            }
+            scope.launch {
+                scaffoldState.snackbarHostState.showSnackbar(snackMessage.value)
+                navController.navigateUp()
             }
         }
         }

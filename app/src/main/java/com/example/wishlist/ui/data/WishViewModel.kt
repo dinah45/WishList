@@ -42,12 +42,12 @@ class WishViewModel(
            return WishRespository.getAllWishesById(wish = wish)
         }
     }
-    fun updateAWish(wish: Wish){
+    fun updateWish(wish: Wish){
         viewModelScope.launch (Dispatchers.IO){
             WishRespository.updateAWish(wish = wish)
         }
     }
-    fun deleteAWish(wish: Wish){
+    fun deleteWish(wish: Wish){
         viewModelScope.launch (Dispatchers.IO){
             WishRespository.deleteAWish(wish = wish)
         }
