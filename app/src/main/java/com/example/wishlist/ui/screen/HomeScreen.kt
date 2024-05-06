@@ -16,19 +16,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import androidx.navigation.NavController
 import com.example.wishlist.R
 import com.example.wishlist.ui.components.AppBar
 import com.example.wishlist.ui.components.WishItem
 import com.example.wishlist.ui.data.DummyWish
 import com.example.wishlist.ui.data.WishViewModel
-import com.example.wishlist.ui.screen.destinations.AddScreenDestination
 
 
-@Destination
 @Composable
-fun HomeScreen(navigator: DestinationsNavigator,
+fun HomeScreen(navController: NavController,
                viewModel: WishViewModel
     ){
     val context = LocalContext.current
@@ -41,7 +38,7 @@ fun HomeScreen(navigator: DestinationsNavigator,
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                navigator.navigate("AddScreen")
+                navController.navigate("add_screen")
             },
                 modifier = Modifier
                     .padding(20.dp),

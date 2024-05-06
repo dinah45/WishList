@@ -14,16 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.example.wishlist.ui.components.AppBar
 import com.example.wishlist.ui.components.WishTextField
 import com.example.wishlist.ui.data.WishViewModel
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination
+
 @Composable
-fun AddScreen(,
+fun AddScreen(navController: NavController,
               id: Long,
               viewModel: WishViewModel){
     Scaffold(
@@ -47,7 +45,7 @@ fun AddScreen(,
                 })
             Spacer(modifier = Modifier.height(10.dp))
 
-            WishTextField(label = "Title",
+            WishTextField(label = "Description",
                 value = viewModel.wishDescriptionState,
                 onValueChanged = {
                     viewModel.onWishDescriptionChanged(it)

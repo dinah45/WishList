@@ -81,6 +81,8 @@ dependencies {
     // viewModel
     implementation(libs.viewmodel.compose)
 
+//navigation
+//    implementation(libs.androidx.navigation)
 
     // room
     implementation(libs.room)

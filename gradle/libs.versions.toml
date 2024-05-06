@@ -19,6 +19,7 @@ datastore = "1.0.0"
 #accompanist
 accompanisrVersion = "0.33.2-alpha"
 
+#navigationCompose = "2.6.0"
 # ksp
 ksp = "1.9.10-1.0.13"
 
@@ -53,8 +54,8 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 #accompanist pager
 accompanist-pager-indicator = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanisrVersion" }
 
-#accompanist navigation animation
-#accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanisrVersion" }
+# navigation
+#navigation = { group = "androidx.navigation", name = "navigation",version.ref ="navigationCompose" }
 
 #compose destinations
 destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "composeDestinationsVersion" }
