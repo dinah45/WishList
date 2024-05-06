@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class WishDao {
 	
-	@Insert(onConflict = OnConflictStrategy.IGNORE)
+	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	abstract fun addAWish(wishEntity: Wish)
 	
 //	Loads all wishes from the wish table
