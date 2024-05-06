@@ -1,5 +1,7 @@
 package com.example.wishlist.ui.screen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -11,6 +13,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -27,40 +30,45 @@ import com.example.wishlist.ui.data.WishViewModel
 @Composable
 fun HomeScreen(navController: NavController,
                viewModel: WishViewModel
-    ){
+    ) {
     val context = LocalContext.current
+    Column(
+modifier = Modifier
+    .fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Scaffold(
+            topBar = {
+                AppBar(title = "Wish List", {
 
-    Scaffold (
-        topBar = {
-            AppBar(title = "Wish List",{
-
-        })
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {
-                navController.navigate("add_screen")
+                })
             },
-                modifier = Modifier
-                    .padding(20.dp),
-                contentColor = Color.White,
-                backgroundColor = colorResource(id = R.color.app_color)
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = {
+                        navController.navigate("add_screen")
+                    },
+                    modifier = Modifier
+                        .padding(20.dp),
+                    contentColor = Color.White,
+                    backgroundColor = colorResource(id = R.color.app_color)
                 ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "")
+                    Icon(imageVector = Icons.Default.Add, contentDescription = "")
+                }
             }
-        }
+        ) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(it)
+                    .wrapContentSize()
+            ) {
+                items(DummyWish.wishList) { wish ->
+                    WishItem(wish = wish) {
 
-    ){
-        LazyColumn (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-                .wrapContentSize()
-        ){
-items(DummyWish.wishList){
-    wish -> WishItem(wish = wish) {
-    
-}
-}
+                    }
+                }
+            }
         }
     }
 }
