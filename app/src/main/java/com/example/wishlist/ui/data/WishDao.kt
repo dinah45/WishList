@@ -12,19 +12,19 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
  interface WishDao {
-	
+
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	suspend fun addAWish(wish: Wish)
+	suspend fun addAWish(wishEntity: Wish)
 	
 //	Loads all wishes from the wish table
 	@Query("Select * from 'wish-table'")
-	 fun getAllWishes(wish: Wish): Flow<List<Wish>>
+	 fun getAllWishes(wishEntity: Wish): Flow<Wish>
 	
 	@Update
-	 suspend fun updateAWish (wish: Wish)
+	 suspend fun updateAWish (wishEntity: Wish)
 	
 	@Delete
-	 suspend fun deleteAWish (wish: Wish)
+	 suspend fun deleteAWish (wishEntity: Wish)
 	
 	@Query("Select * from 'wish-table' where id=:id")
 	 fun getAWishById (id:Long): Flow<Wish>

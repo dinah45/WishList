@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+val wish: Wish
 
 @Entity(tableName = "wish-table")
 data class Wish (
